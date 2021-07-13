@@ -8,34 +8,8 @@ namespace asyncgame
 {
     abstract class Person
     {
-        public int x;/*
-        {
-            get
-            {
-                return x;
-            }
-            set
-            {
-                if (value > 0)
-                {
-                    x = value;
-                }
-            }
-        }*/
-        public int y;/*
-        {
-            get
-            {
-                return y;
-            }
-            set
-            {
-                if (value > 0)
-                {
-                    y = value;
-                }
-            }
-        }*/
+        public int x;
+        public int y;
         public Map map;
         public Person(int x, int y, Map map)
         {
@@ -43,9 +17,8 @@ namespace asyncgame
             this.y = y;
             this.map = map;
         }
-        public virtual async void Move()
+        public virtual async Task Move()
         {
-            //TODO make move
             while (1 == 1)
             {
                 await go_left();
@@ -56,36 +29,30 @@ namespace asyncgame
 
         }
 
-        public virtual void go(int newX, int newY)
+        async public Task go(int newX, int newY)
         {
             if (newX >= 0 && newX < map.x && newY >= 0 && newY < map.y)
             {
                 int type;
-                if (map.map[newX, newY] == 0)
-                {
-                    type = map.map[x, y];
-                    map.map[x, y] = 0;
-                    map.map[newX, newY] = type;
-                    x = newX;
-                    y = newY;
-                }
-                else
-                {
-
-                }
+                type = map.map[x, y];
+                map.map[x, y] = 0;
+                map.map[newX, newY] = type;
+                x = newX;
+                y = newY;
+                
             }
             
         }
         async public Task go_up()
         {
             int ny = y + 1;
-            go(x, ny);
+            await go(x, ny);
 
         }
         async public Task go_left()
         {
             int nx = x - 1;
-            go(nx, y);
+            await go(nx, y);
         }
         async public Task go_right()
         {
@@ -95,7 +62,7 @@ namespace asyncgame
         async public Task go_down()
         {
             int ny = y - 1;
-            go(x, ny);
+            await go(x, ny);
         }
 
 

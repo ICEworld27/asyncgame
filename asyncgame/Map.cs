@@ -55,7 +55,7 @@ namespace asyncgame
             enemy1 = new Enemy(1,1,this);
             enemy2 = new Enemy(2,2,this);
             player = new Player(0, 0, this);
-            map = GenerateMap(y,x);
+            map = GenerateMap(x,y);
             
         }
         public Player GetPlayer()
@@ -64,10 +64,10 @@ namespace asyncgame
         }
         int[,] GenerateMap(int n, int m)
         {
-            int[,] map = new int[m, n];
-            for (int i = 0; i < m; i++)
+            int[,] map = new int[n, m];
+            for (int i = 0; i < n; i++)
             {
-                for (int j = 0; j < n; j++)
+                for (int j = 0; j < m; j++)
                 {
                     map[i, j] = 0;
                 }
@@ -81,6 +81,31 @@ namespace asyncgame
         public override string ToString()
         {
             string res = "";
+            for (int i = 0; i < y; i++)
+            {
+                res += "|";
+                for (int j = 0; j < x; j++)
+                {
+                    if (map[j, i] == 1)
+                    {
+                        res += "+";
+                    }
+                    else
+                    {
+                        if (map[j, i] == 2)
+                        {
+                            res += "-";
+                        }
+                        else
+                        {
+                            res += " ";
+                        }
+                    }
+                    res += "|";
+                }
+                res += "\n";
+            }
+            /*
             for (int i = x-1; i >= 0; i--)
             {
                res+="|";
@@ -106,13 +131,14 @@ namespace asyncgame
                     res += "|";
                 }
                 res += "\n";
-            }
+            }*/
             return res;
         }
-        public void Run()
+        async public Task Run()
         {
-            enemy1.Move();
-            enemy2.Move();
+            await enemy1.Move();
+            await enemy2.Move();
+            await player.Move();
         }
     }
 }

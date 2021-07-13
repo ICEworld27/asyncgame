@@ -11,6 +11,7 @@ namespace asyncgame
         public Player(int x, int y, Map map):base(x,y,map)
         {
         }
+        /*
         public override void go(int newX, int newY)
         {
             if (newX >= 0 && newX < map.x && newY >= 0 && newY < map.y)
@@ -34,16 +35,29 @@ namespace asyncgame
             }
 
         }
-
-        public override async void Move()
+        */
+        public override async Task Move()
         {
-            //TODO make move
-            while (y != map.y-1 && x != map.x-1 )
+            bool running = true;
+            while (running)
             {
-                await go_right();
+                if (map.map[x+1,y] != 2)
+                {
+                    await go_right();
+                    if (y == map.y - 1 && x == map.x - 1)
+                    {
+                        running = false;
+                        Console.WriteLine("You win!");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("You lost!");
+                    running = false;
+                }
                 Console.WriteLine(map);
             }
-            Console.WriteLine("You win!");
+            
         }
 
 
