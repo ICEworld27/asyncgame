@@ -56,7 +56,7 @@ namespace asyncgame
             enemy2 = new Enemy(2,2,this);
             player = new Player(0, 0, this);
             map = GenerateMap(y,x);
-
+            
         }
         public Player GetPlayer()
         {
@@ -108,6 +108,11 @@ namespace asyncgame
                 res += "\n";
             }
             return res;
+        }
+        public void Run()
+        {
+            enemy1.Move();
+            enemy2.Move();
         }
     }
 }

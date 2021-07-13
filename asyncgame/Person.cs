@@ -43,9 +43,17 @@ namespace asyncgame
             this.y = y;
             this.map = map;
         }
-        void Move()
+        public virtual async void Move()
         {
             //TODO make move
+            while (1 == 1)
+            {
+                await go_left();
+                await go_down();
+                await go_right();
+                await go_up();
+            }
+
         }
 
         public virtual void go(int newX, int newY)
@@ -68,23 +76,23 @@ namespace asyncgame
             }
             
         }
-        public void go_up()
+        async public Task go_up()
         {
             int ny = y + 1;
             go(x, ny);
 
         }
-        public void go_left()
+        async public Task go_left()
         {
             int nx = x - 1;
             go(nx, y);
         }
-        public void go_right()
+        async public Task go_right()
         {
             int nx = x + 1;
             go(nx, y);
         }
-        public void go_down()
+        async public Task go_down()
         {
             int ny = y - 1;
             go(x, ny);

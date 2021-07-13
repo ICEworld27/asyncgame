@@ -28,15 +28,25 @@ namespace asyncgame
                     if (map.map[newX, newY] != type)
                     {
                         map.map[x, y] = 0;
-                        throw new ArgumentException("Die");
+                        Console.WriteLine("You lost!");
                     }
                 }
             }
 
         }
 
-        
-        
+        public override async void Move()
+        {
+            //TODO make move
+            while (y != map.y-1 && x != map.x-1 )
+            {
+                await go_right();
+                Console.WriteLine(map);
+            }
+            Console.WriteLine("You win!");
+        }
+
+
     }
 }
 

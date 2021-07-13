@@ -15,20 +15,8 @@ namespace asyncgame
             Map map = new Map(m, n);
             Console.WriteLine(map);
             Player player = map.GetPlayer();
-            try
-            {
-                player.go_up();
-                player.go_up();
-                player.go_right();
-                player.go_right();
-                player.go_right();
-                player.go_right();
-            }
-            catch(ArgumentException ex)
-            {
-                Console.WriteLine("Player died");
-            }
-            
+            player.Move();
+            map.Run();
             Console.WriteLine(map);
         }        
     }
