@@ -134,11 +134,11 @@ namespace asyncgame
             }*/
             return res;
         }
-        async public Task Run()
+        public void Run()
         {
-            await enemy1.Move();
-            await enemy2.Move();
-            await player.Move();
+            enemy1.Move();
+            enemy2.Move();
+            player.Move();
         }
     }
 }

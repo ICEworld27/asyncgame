@@ -17,7 +17,7 @@ namespace asyncgame
             this.y = y;
             this.map = map;
         }
-        public virtual async Task Move()
+        async public virtual Task Move()
         {
             while (1 == 1)
             {
@@ -25,6 +25,7 @@ namespace asyncgame
                 await go_down();
                 await go_right();
                 await go_up();
+
             }
 
         }
