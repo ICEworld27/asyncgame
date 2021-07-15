@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace asyncgame
@@ -11,6 +12,7 @@ namespace asyncgame
         public int x;
         public int y;
         public Map map;
+        public bool running;
         public Person(int x, int y, Map map)
         {
             this.x = x;
@@ -19,7 +21,8 @@ namespace asyncgame
         }
         async public virtual Task Move()
         {
-            while (1 == 1)
+            running = true;
+            while (running)
             {
                 await go_left();
                 await go_down();
@@ -27,7 +30,7 @@ namespace asyncgame
                 await go_up();
 
             }
-
+            
         }
 
         async public Task go(int newX, int newY)
@@ -42,28 +45,34 @@ namespace asyncgame
                 y = newY;
                 
             }
-            
-        }
-        async public Task go_up()
-        {
-            int ny = y + 1;
-            await go(x, ny);
+            await Task.Yield();
 
         }
-        async public Task go_left()
+         public Task go_up()
+        {
+            int ny = y + 1;
+            return go(x, ny);
+
+        }
+        
+        public Task go_left()
         {
             int nx = x - 1;
-            await go(nx, y);
+            return go(nx, y);
         }
-        async public Task go_right()
+         public Task go_right()
         {
             int nx = x + 1;
-            go(nx, y);
+            return go(nx, y);
         }
-        async public Task go_down()
+         public Task go_down()
         {
             int ny = y - 1;
-            await go(x, ny);
+            return go(x, ny);
+        }
+        public void Stop()
+        {
+            running = false;
         }
 
 

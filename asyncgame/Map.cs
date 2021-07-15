@@ -54,7 +54,10 @@ namespace asyncgame
             this.y = y;
             enemy1 = new Enemy(1,1,this);
             enemy2 = new Enemy(2,2,this);
-            player = new Player(0, 0, this);
+            List<Enemy> enemies = new List<Enemy>();
+            enemies.Add(enemy1);
+            enemies.Add(enemy2);
+            player = new Player(0, 0, this,enemies);
             map = GenerateMap(x,y);
             
         }
@@ -105,33 +108,7 @@ namespace asyncgame
                 }
                 res += "\n";
             }
-            /*
-            for (int i = x-1; i >= 0; i--)
-            {
-               res+="|";
-                for (int j = 0; j < y; j++)
-                {
-
-                    if (map[i, j] == 1)
-                    {
-                        res += "+";
-                    }
-                    else
-                    {
-                        if (map[i, j] == 2)
-                        {
-                            res += "-";
-                        }
-                        else
-                        {
-                            res += " ";
-                        }
-                    }
-
-                    res += "|";
-                }
-                res += "\n";
-            }*/
+            
             return res;
         }
         public void Run()
@@ -139,6 +116,7 @@ namespace asyncgame
             enemy1.Move();
             enemy2.Move();
             player.Move();
+
         }
     }
 }

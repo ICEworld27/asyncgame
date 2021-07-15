@@ -16,7 +16,8 @@ namespace asyncgame
             //map.GetPlayer().Move();
             Console.WriteLine(map);
             map.Run();
-            Console.WriteLine("assa");
+            //Console.WriteLine("assa");
+            Console.ReadKey();
             /*
             int[,] b = new Map(3, 2).map;
             int[,] a = { {5,10,55 },{ 20,50,60}};
