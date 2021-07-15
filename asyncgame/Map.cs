@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using static System.Random;
 namespace asyncgame
 {
     class Map
@@ -47,13 +47,23 @@ namespace asyncgame
         Enemy enemy2;
         Player player;
         public int[,] map;
-
-        public Map(int x, int y)
+        Random random = new Random();
+        public Map(int x, int y, bool randomeMode = true)
         {
             this.x = x;
             this.y = y;
-            enemy1 = new Enemy(1,1,this);
-            enemy2 = new Enemy(2,2,this);
+            if (randomeMode)
+            {
+                enemy1 = new Enemy(random.Next(1, x), random.Next(1, y), this);
+                enemy2 = new Enemy(random.Next(1, x), random.Next(1, y), this);
+            }
+            else
+            {
+                enemy1 = new Enemy(x/2,y/2,this);
+                enemy2 = new Enemy(x/3,y/3,this);
+            }
+
+
             List<Enemy> enemies = new List<Enemy>();
             enemies.Add(enemy1);
             enemies.Add(enemy2);

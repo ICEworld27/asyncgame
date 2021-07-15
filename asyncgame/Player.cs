@@ -18,7 +18,7 @@ namespace asyncgame
             bool running = true;
             while (running)
             {
-                if (map.map[x+1,y] != 2&&map.map[x,y] != 0)
+                if (map.map[x + 1, y] != 2 && map.map[x, y] != 2 && map.map[x, y] != 0)
                 {
                     await go_up();
                     if (y == map.y - 1 || x == map.x - 1)

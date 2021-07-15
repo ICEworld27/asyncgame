@@ -7,29 +7,20 @@ namespace asyncgame
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Console.WriteLine("N: ");//x
+            Console.WriteLine("Hello user!");
+            Console.Write("Please enter value of N: ");//x
             int n = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("M: ");//y
+            Console.Write("Please enter value of M: ");//y
             int m = Convert.ToInt32(Console.ReadLine());
-            Map map = new Map(n, m);
-            //map.GetPlayer().Move();
+            Console.Write("Use random mode? Y/N");
+            Map map = new Map(n, m, false);
+            if (Console.ReadLine() == "Y")
+            {
+                map= new Map(n, m);
+            }
             Console.WriteLine(map);
             map.Run();
-            //Console.WriteLine("assa");
             Console.ReadKey();
-            /*
-            int[,] b = new Map(3, 2).map;
-            int[,] a = { {5,10,55 },{ 20,50,60}};
-            for(int i = 0; i < 2; i++)
-            {
-                for(int j = 0; j < 3; j++)
-                {
-                    Console.Write($"|{b[j, i]}|");
-                }
-                Console.WriteLine();
-            }
-            */
         }        
     }
 }
